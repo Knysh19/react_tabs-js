@@ -1,13 +1,29 @@
-export const Tabs = ({ value }) => {
-  let content = '';
+export const Tabs = ({ value, setValue, tabs }) => {
+  return (
+    <div data-cy="TabsComponent">
+      <div className="tabs is-boxed">
+        <ul>
+          {tabs.map((tab, index) => (
+            <li
+              key={tab.id}
+              className={value === index ? 'is-active' : ''}
+              data-cy="Tab"
+            >
+              <a
+                href={`#${tab.id}`}
+                data-cy="TabLink"
+                onClick={() => setValue(index)}
+              >
+                {tab.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-  if (value === 1) {
-    content = 'Some text 1';
-  } else if (value === 2) {
-    content = 'Some text 2';
-  } else {
-    content = 'Some text 3';
-  }
-
-  return <div>{content}</div>;
+      <div className="block" data-cy="TabContent">
+        {tabs[value].content}
+      </div>
+    </div>
+  );
 };

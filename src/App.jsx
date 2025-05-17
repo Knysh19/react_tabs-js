@@ -12,37 +12,13 @@ export const tabs = [
 ];
 
 export const App = () => {
- const [ value, setValue ] = useState(1);
+  const [value, setValue] = useState(0);
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is Tab {value}</h1>
+      <h1 className="title">Selected tab is Tab {value + 1}</h1>
 
-      <div data-cy="TabsComponent">
-        <div className="tabs is-boxed">
-          <ul>
-            <li className={value === 1 ? 'is-active' : ''} data-cy="Tab">
-              <a href="#tab-1" data-cy="TabLink" onClick={() => setValue(1)}>
-                Tab 1
-              </a>
-            </li>
-
-            <li className={value === 2 ? 'is-active' : ''} data-cy="Tab">
-              <a href="#tab-2" data-cy="TabLink" onClick={() => setValue(2)}>
-                Tab 2
-              </a>
-            </li>
-
-            <li className={value === 3 ? 'is-active' : ''} data-cy="Tab">
-              <a href="#tab-3" data-cy="TabLink" onClick={() => setValue(3)}>
-                Tab 3
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <Tabs value={value} />
-      </div>
+      <Tabs value={value} setValue={setValue} tabs={tabs} />
     </div>
   );
 };
